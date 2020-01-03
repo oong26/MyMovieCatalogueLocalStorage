@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyMovieCatalogueLocalStorage</string>
+    <string name="title_tv_show">TV Show</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_movies">Movies</string>
+    <string name="tab_movies_fav">Movies Favorite</string>
+    <string name="tab_tv_fav">TV Show Favorite</string>
+</resources>
