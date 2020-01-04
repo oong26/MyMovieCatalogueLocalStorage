@@ -5,4 +5,6 @@
     <string name="title_movies">Movies</string>
     <string name="tab_movies_fav">Movies Favorite</string>
     <string name="tab_tv_fav">TV Show Favorite</string>
+    <string name="error_msg">There is an error</string>
+    <string name="server_error">Unreachable Server</string>
 </resources>

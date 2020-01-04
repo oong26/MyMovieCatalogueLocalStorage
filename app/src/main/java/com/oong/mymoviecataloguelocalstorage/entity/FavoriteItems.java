@@ -3,7 +3,7 @@ package com.oong.mymoviecataloguelocalstorage.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Favorite implements Parcelable {
+public class FavoriteItems implements Parcelable {
     private int id;
     private String title;
     private String release_date;
@@ -12,11 +12,11 @@ public class Favorite implements Parcelable {
     private String desc;
     private int jenis;
 
-    public Favorite(){
+    public FavoriteItems(){
 
     }
 
-    protected Favorite(Parcel in) {
+    protected FavoriteItems(Parcel in) {
         id = in.readInt();
         title = in.readString();
         release_date = in.readString();
@@ -26,15 +26,15 @@ public class Favorite implements Parcelable {
         jenis = in.readInt();
     }
 
-    public static final Creator<Favorite> CREATOR = new Creator<Favorite>() {
+    public static final Creator<FavoriteItems> CREATOR = new Creator<FavoriteItems>() {
         @Override
-        public Favorite createFromParcel(Parcel in) {
-            return new Favorite(in);
+        public FavoriteItems createFromParcel(Parcel in) {
+            return new FavoriteItems(in);
         }
 
         @Override
-        public Favorite[] newArray(int size) {
-            return new Favorite[size];
+        public FavoriteItems[] newArray(int size) {
+            return new FavoriteItems[size];
         }
     };
 
