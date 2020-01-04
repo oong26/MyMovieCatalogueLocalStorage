@@ -11,15 +11,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "catalouge";
     private static final int DATABASE_VERSION = 1;
     public static final String TABLE_NAME = "favorite";
-    private static final String TITLE = "title";
-    private static final String RELEASE_DATE = "release_date";
-    private static final String POPULARITY = "popularity";
-    private static final String POSTER = "poster";
-    private static final String DESC = "desc";
-    private static final String JENIS = "jenis";
+    public static final String TITLE = "title";
+    public static final String RELEASE_DATE = "release_date";
+    public static final String POPULARITY = "popularity";
+    public static final String POSTER = "poster";
+    public static final String DESC = "desc";
+    public static final String JENIS = "jenis";
 
     private static final String SQL_CREATE_TABLE_NOTE = String.format("CREATE TABLE %s " +
-            "(%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "(%s TEXT PRIMARY KEY NOT NULL," +
             " %s TEXT NOT NULL," +
             " %s TEXT NOT NULL DEFAULT '-'," +
             " %s TEXT NOT NULL DEFAULT '-'," +

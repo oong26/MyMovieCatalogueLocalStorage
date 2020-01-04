@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static String ERROR_MSG;
     public static String SERVER_ERROR;
+    public static String MOVIE_SUCCESS_MSG;
+    public static String TV_SUCCESS_MSG;
+    public static String REMOVED_FAV_MSG;
     private FavoriteHelper favoriteHelper;
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
@@ -44,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         ERROR_MSG = getResources().getString(R.string.error_msg);
         SERVER_ERROR = getResources().getString(R.string.server_error);
+        MOVIE_SUCCESS_MSG = getResources().getString(R.string.movie_fav_msg);
+        TV_SUCCESS_MSG = getResources().getString(R.string.tv_fav_msg);
+        REMOVED_FAV_MSG = getResources().getString(R.string.remove_favorite);
         favoriteHelper = FavoriteHelper.getInstance(this);
         favoriteHelper.open();
         hostFragment = findViewById(R.id.nav_host_fragment);

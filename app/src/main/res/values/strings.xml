@@ -7,6 +7,9 @@
     <string name="tab_tv_fav">TV Show Favorite</string>
     <string name="error_msg">There is an error</string>
     <string name="server_error">Unreachable Server</string>
+    <string name="movie_fav_msg">Movie added to favorite</string>
+    <string name="tv_fav_msg">TV Show added to favorite</string>
+    <string name="remove_favorite">Removed from favorite</string>
     <string name="movie_name">Dummy Movie</string>
     <string name="movie_photo">Movie Photo</string>
     <string name="movie_release_date">2019–12–18</string>

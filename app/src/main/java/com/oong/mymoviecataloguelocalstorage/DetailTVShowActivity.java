@@ -33,6 +33,7 @@ public class DetailTVShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_tvshow);
 
+        setTitle("Detail TV Show");
         init();
 
         viewModel = new ViewModelProvider(this).get(TvShowViewModel.class);
