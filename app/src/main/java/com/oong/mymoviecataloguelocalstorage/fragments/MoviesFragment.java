@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.oong.mymoviecataloguelocalstorage.DetailMovieActivity;
 import com.oong.mymoviecataloguelocalstorage.MainActivity;
 import com.oong.mymoviecataloguelocalstorage.R;
 import com.oong.mymoviecataloguelocalstorage.adapter.MoviesAdapter;
@@ -78,9 +79,9 @@ public class MoviesFragment extends Fragment {
         adapter.setOnItemClickCallback(new MoviesAdapter.OnItemClickCallback() {
             @Override
             public void onItemClicked(MovieItems data) {
-                /*Intent intent = new Intent(getActivity(),DetailMoviesActivity.class);
-                intent.putExtra(DetailMoviesActivity.MOVIE_EXTRA, data);
-                startActivity(intent);*/
+                Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
+                intent.putExtra(DetailMovieActivity.MOVIE_EXTRA, data);
+                startActivity(intent);
             }
         });
     }

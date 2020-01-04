@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.oong.mymoviecataloguelocalstorage.DetailTVShowActivity;
 import com.oong.mymoviecataloguelocalstorage.MainActivity;
 import com.oong.mymoviecataloguelocalstorage.R;
 import com.oong.mymoviecataloguelocalstorage.adapter.MoviesAdapter;
@@ -82,9 +83,9 @@ public class TVShowFragment extends Fragment {
         adapter.setOnItemClickCallback(new TVShowAdapter.OnItemClickCallback() {
             @Override
             public void onItemClicked(TvShowItems data) {
-                /*Intent intent = new Intent(getActivity(),DetailMoviesActivity.class);
-                intent.putExtra(DetailMoviesActivity.MOVIE_EXTRA, data);
-                startActivity(intent);*/
+                Intent intent = new Intent(getActivity(), DetailTVShowActivity.class);
+                intent.putExtra(DetailTVShowActivity.TV_EXTRA, data);
+                startActivity(intent);
             }
         });
     }

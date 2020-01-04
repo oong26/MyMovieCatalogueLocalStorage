@@ -10,6 +10,13 @@
     <string name="movie_name">Dummy Movie</string>
     <string name="movie_photo">Movie Photo</string>
     <string name="movie_release_date">2019–12–18</string>
-    <string name="tv_show_pupularity">467.558</string>
     <string name="back_text">Press again to exit</string>
+    <string name="title">Title</string>
+    <string name="dummy_movie_title">Dummy Movie</string>
+    <string name="dummy_movie_description">Dummy Movie Description</string>
+    <string name="release_date">Release Date</string>
+    <string name="dummy_movie_release_date">Dummy Movie Release Date</string>
+    <string name="tv_show_pupularity">467.558</string>
+    <string name="tvshow_popularity">Popularity</string>
+    <string name="dummy_tv_description">Dummy TV Description</string>
 </resources>
