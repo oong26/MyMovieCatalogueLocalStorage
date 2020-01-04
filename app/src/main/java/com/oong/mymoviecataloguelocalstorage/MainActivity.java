@@ -19,7 +19,9 @@ import com.oong.mymoviecataloguelocalstorage.database.FavoriteHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    FavoriteHelper favoriteHelper;
+    public static String ERROR_MSG;
+    public static String SERVER_ERROR;
+    private FavoriteHelper favoriteHelper;
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     private BottomNavigationView bottomView;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
+        ERROR_MSG = getResources().getString(R.string.error_msg);
+        SERVER_ERROR = getResources().getString(R.string.server_error);
         favoriteHelper = FavoriteHelper.getInstance(this);
         favoriteHelper.open();
         hostFragment = findViewById(R.id.nav_host_fragment);
