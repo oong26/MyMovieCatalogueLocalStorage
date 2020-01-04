@@ -165,7 +165,6 @@ public class DetailMovieActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("DETAIL", "Detail : onDestroy");
         favoriteHelper.close();
     }
 }
