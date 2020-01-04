@@ -7,4 +7,9 @@
     <string name="tab_tv_fav">TV Show Favorite</string>
     <string name="error_msg">There is an error</string>
     <string name="server_error">Unreachable Server</string>
+    <string name="movie_name">Dummy Movie</string>
+    <string name="movie_photo">Movie Photo</string>
+    <string name="movie_release_date">2019–12–18</string>
+    <string name="tv_show_pupularity">467.558</string>
+    <string name="back_text">Press again to exit</string>
 </resources>

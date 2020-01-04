@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class MoviesModel extends ViewModel {
+public class MoviesViewModel extends ViewModel {
 
     private static final String API_KEY = "8a9136100788b5ba869e016a4625a9bc";
     private MutableLiveData<ArrayList<MovieItems>> listMovies = new MutableLiveData<>();
