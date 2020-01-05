@@ -16,6 +16,16 @@ public class FavoriteItems implements Parcelable {
 
     }
 
+    public FavoriteItems(int id, String title, String release_date, String popularity, String poster, String desc, int jenis) {
+        this.id = id;
+        this.title = title;
+        this.release_date = release_date;
+        this.popularity = popularity;
+        this.poster = poster;
+        this.desc = desc;
+        this.jenis = jenis;
+    }
+
     protected FavoriteItems(Parcel in) {
         id = in.readInt();
         title = in.readString();

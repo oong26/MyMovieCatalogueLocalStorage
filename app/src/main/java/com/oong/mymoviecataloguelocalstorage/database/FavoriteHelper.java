@@ -66,6 +66,17 @@ public class FavoriteHelper {
                 null);
     }
 
+    public Cursor queryByJenis(String jenis){
+        return database.query(DATABASE_TABLE,
+                null,
+                DatabaseHelper.JENIS + " = ?",
+                new String[]{jenis},
+                null,
+                null,
+                null,
+                null);
+    }
+
     public long insert(ContentValues values){
         return database.insert(DATABASE_TABLE, null, values);
     }

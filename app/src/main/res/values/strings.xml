@@ -10,6 +10,7 @@
     <string name="movie_fav_msg">Movie added to favorite</string>
     <string name="tv_fav_msg">TV Show added to favorite</string>
     <string name="remove_favorite">Removed from favorite</string>
+    <string name="data_not_found">Data not found</string>
     <string name="movie_name">Dummy Movie</string>
     <string name="movie_photo">Movie Photo</string>
     <string name="movie_release_date">2019–12–18</string>

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static String MOVIE_SUCCESS_MSG;
     public static String TV_SUCCESS_MSG;
     public static String REMOVED_FAV_MSG;
+    public static String DATA_NOT_FOUND;
     private FavoriteHelper favoriteHelper;
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         MOVIE_SUCCESS_MSG = getResources().getString(R.string.movie_fav_msg);
         TV_SUCCESS_MSG = getResources().getString(R.string.tv_fav_msg);
         REMOVED_FAV_MSG = getResources().getString(R.string.remove_favorite);
+        DATA_NOT_FOUND = getResources().getString(R.string.data_not_found);
         favoriteHelper = FavoriteHelper.getInstance(this);
         favoriteHelper.open();
         hostFragment = findViewById(R.id.nav_host_fragment);

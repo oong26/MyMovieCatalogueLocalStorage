@@ -64,6 +64,10 @@ public class MoviesViewModel extends ViewModel {
         });
     }
 
+    public void setFavoriteMovies(){
+
+    }
+
     public void setDetailMovie(final Context context, final String movie_id){
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<MovieItems> listItems = new ArrayList<>();
