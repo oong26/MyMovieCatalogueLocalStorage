@@ -1,5 +1,6 @@
 package com.oong.mymoviecataloguelocalstorage.model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -65,7 +66,7 @@ public class TvShowViewModel extends ViewModel {
         });
     }
 
-    public void setDetailTV(final Context context, final String tv_id){
+    public void setDetailTV(final Activity activity, final Context context, final String tv_id){
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<TvShowItems> listItems = new ArrayList<>();
         String url = "https://api.themoviedb.org/3/tv/" + tv_id + "?api_key=" + API_KEY + "&language=" + language;
@@ -96,6 +97,7 @@ public class TvShowViewModel extends ViewModel {
                 catch (Exception e){
                     Log.d("Exception", e.getMessage());
                     Toast.makeText(context, MainActivity.ERROR_MSG , Toast.LENGTH_SHORT).show();
+                    activity.finish();
                 }
             }
 
@@ -103,6 +105,7 @@ public class TvShowViewModel extends ViewModel {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Log.d("Exception", error.getMessage());
                 Toast.makeText(context, MainActivity.SERVER_ERROR , Toast.LENGTH_SHORT).show();
+                activity.finish();
             }
         });
     }

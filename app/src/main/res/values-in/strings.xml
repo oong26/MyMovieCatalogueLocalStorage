@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Katalog Film</string>
+    <string name="title_tv_show">Acara Televisi</string>
+    <string name="title_favorite">Favorit</string>
+    <string name="title_movies">Film</string>
+    <string name="tab_movies_fav">Film Favorit</string>
+    <string name="tab_tv_fav">Acara Televisi Favorit</string>
+    <string name="error_msg">Terjadi Kesalahan</string>
+    <string name="server_error">Server Tidak Terjangkau</string>
+    <string name="movie_fav_msg">Film di Tambahkan ke Favorit</string>
+    <string name="tv_fav_msg">Acara Televisi di Tambahkan ke Favorit</string>
+    <string name="remove_favorite">Dihapus dari favorit</string>
+    <string name="data_not_found">Data tidak ada</string>
+    <string name="movie_name">Dumi Film</string>
+    <string name="movie_photo">Foto Film</string>
+    <string name="movie_release_date">2019–12–18</string>
+    <string name="back_text">Tekan kembali untuk keluar</string>
+    <string name="title">Judul</string>
+    <string name="dummy_movie_title">Dumi Film</string>
+    <string name="dummy_movie_description">Dumi Deskripsi Film</string>
+    <string name="release_date">Tanggal Rilis</string>
+    <string name="dummy_movie_release_date">Dumi Film Taggal Liris</string>
+    <string name="tv_show_pupularity">467.558</string>
+    <string name="tvshow_popularity">Popularitas</string>
+    <string name="dummy_tv_description">Dumi Televisi Deskripsi</string>
+    <string name="title_language">Bahasa</string>
+</resources>

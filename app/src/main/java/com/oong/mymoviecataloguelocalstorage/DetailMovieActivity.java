@@ -48,7 +48,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         init();
 
         viewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
-        viewModel.setDetailMovie(this, movieId);
+        viewModel.setDetailMovie(this, this, movieId);
         viewModel.getMovie().observe(this, new Observer<ArrayList<MovieItems>>() {
             @Override
             public void onChanged(ArrayList<MovieItems> movieItems) {

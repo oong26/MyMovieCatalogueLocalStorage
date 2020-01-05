@@ -45,6 +45,8 @@ public class TVShowFavoriteFragment extends Fragment implements LoadTVFavoriteCa
     private FavoriteHelper favoriteHelper;
     private static final String EXTRA_STATE = "EXTRA_STATE";
     private static ArrayList<FavoriteItems> favoriteList;
+    private Bundle bundle;
+    private View view;
 
     public TVShowFavoriteFragment() {
         // Required empty public constructor
@@ -66,6 +68,8 @@ public class TVShowFavoriteFragment extends Fragment implements LoadTVFavoriteCa
         MainActivity.viewPager.setVisibility(VISIBLE);
         MainActivity.hostFragment.setVisibility(GONE);
 
+        this.view = view;
+        this.bundle = savedInstanceState;
         progressBar = view.findViewById(R.id.progressBar);
         showLoading(true);
         favoriteHelper = FavoriteHelper.getInstance(getActivity());
@@ -81,6 +85,21 @@ public class TVShowFavoriteFragment extends Fragment implements LoadTVFavoriteCa
                 adapter.setData(list);
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        new LoadNotesAsync(favoriteHelper, this).execute();
+        if (bundle == null) {
+            // proses ambil data
+            new LoadNotesAsync(favoriteHelper, this).execute();
+        } else {
+            ArrayList<FavoriteItems> list = bundle.getParcelableArrayList(EXTRA_STATE);
+            if (list != null) {
+                adapter.setData(list);
+            }
+        }
+        super.onResume();
     }
 
     public static ArrayList<FavoriteItems> mapCursorToArrayList(Cursor cursor) {
@@ -145,7 +164,6 @@ public class TVShowFavoriteFragment extends Fragment implements LoadTVFavoriteCa
         }
         else{
             adapter.setData(new ArrayList<FavoriteItems>());
-            Toast.makeText(getActivity(), MainActivity.DATA_NOT_FOUND, Toast.LENGTH_SHORT).show();
         }
         showLoading(false);
     }

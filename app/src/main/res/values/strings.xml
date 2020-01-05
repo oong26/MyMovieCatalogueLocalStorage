@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyMovieCatalogueLocalStorage</string>
+    <string name="app_name">Movie Catalogue</string>
     <string name="title_tv_show">TV Show</string>
     <string name="title_favorite">Favorite</string>
     <string name="title_movies">Movies</string>
@@ -23,4 +23,5 @@
     <string name="tv_show_pupularity">467.558</string>
     <string name="tvshow_popularity">Popularity</string>
     <string name="dummy_tv_description">Dummy TV Description</string>
+    <string name="title_language">Language</string>
 </resources>

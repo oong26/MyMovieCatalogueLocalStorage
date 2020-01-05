@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -40,6 +43,8 @@ public class MoviesFavoriteFragment extends Fragment implements LoadFavoriteCall
     private FavoriteHelper favoriteHelper;
     private static final String EXTRA_STATE = "EXTRA_STATE";
     private static ArrayList<FavoriteItems> favoriteList;
+    private Bundle bundle;
+    private View view;
 
     public MoviesFavoriteFragment() {
         // Required empty public constructor
@@ -61,6 +66,8 @@ public class MoviesFavoriteFragment extends Fragment implements LoadFavoriteCall
         MainActivity.viewPager.setVisibility(VISIBLE);
         MainActivity.hostFragment.setVisibility(GONE);
 
+        this.view = view;
+        this.bundle = savedInstanceState;
         progressBar = view.findViewById(R.id.progressBar);
         showLoading(true);
         favoriteHelper = FavoriteHelper.getInstance(getActivity());
@@ -115,8 +122,18 @@ public class MoviesFavoriteFragment extends Fragment implements LoadFavoriteCall
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onResume() {
+        new LoadNotesAsync(favoriteHelper, this).execute();
+        if (bundle == null) {
+            // proses ambil data
+            new LoadNotesAsync(favoriteHelper, this).execute();
+        } else {
+            ArrayList<FavoriteItems> list = bundle.getParcelableArrayList(EXTRA_STATE);
+            if (list != null) {
+                adapter.setData(list);
+            }
+        }
+        super.onResume();
     }
 
     void showLoading(boolean state){
@@ -145,7 +162,6 @@ public class MoviesFavoriteFragment extends Fragment implements LoadFavoriteCall
         }
         else{
             adapter.setData(new ArrayList<FavoriteItems>());
-            Toast.makeText(getActivity(), MainActivity.DATA_NOT_FOUND, Toast.LENGTH_SHORT).show();
         }
         showLoading(false);
     }

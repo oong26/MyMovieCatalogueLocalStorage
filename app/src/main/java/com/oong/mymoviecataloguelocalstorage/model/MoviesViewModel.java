@@ -1,5 +1,6 @@
 package com.oong.mymoviecataloguelocalstorage.model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -64,11 +65,7 @@ public class MoviesViewModel extends ViewModel {
         });
     }
 
-    public void setFavoriteMovies(){
-
-    }
-
-    public void setDetailMovie(final Context context, final String movie_id){
+    public void setDetailMovie(final Activity activity, final Context context, final String movie_id){
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<MovieItems> listItems = new ArrayList<>();
         String url = "https://api.themoviedb.org/3/movie/" + movie_id + "?api_key=" + API_KEY + "&language=en-US";
@@ -99,6 +96,7 @@ public class MoviesViewModel extends ViewModel {
                 catch (Exception e){
                     Log.d("Exception", e.getMessage());
                     Toast.makeText(context, MainActivity.ERROR_MSG , Toast.LENGTH_SHORT).show();
+                    activity.finish();
                 }
             }
 
@@ -106,6 +104,7 @@ public class MoviesViewModel extends ViewModel {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Log.d("Exception", error.getMessage());
                 Toast.makeText(context, MainActivity.SERVER_ERROR , Toast.LENGTH_SHORT).show();
+                activity.finish();
             }
         });
     }

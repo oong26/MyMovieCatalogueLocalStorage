@@ -48,7 +48,7 @@ public class DetailTVShowActivity extends AppCompatActivity {
         init();
 
         viewModel = new ViewModelProvider(this).get(TvShowViewModel.class);
-        viewModel.setDetailTV(this, tvShowId);
+        viewModel.setDetailTV(this,this, tvShowId);
         viewModel.getTVShow().observe(this, new Observer<ArrayList<TvShowItems>>() {
             @Override
             public void onChanged(ArrayList<TvShowItems> tvShowItems) {
