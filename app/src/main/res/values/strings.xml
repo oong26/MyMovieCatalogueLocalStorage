@@ -24,4 +24,6 @@
     <string name="tvshow_popularity">Popularity</string>
     <string name="dummy_tv_description">Dummy TV Description</string>
     <string name="title_language">Language</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search here</string>
 </resources>

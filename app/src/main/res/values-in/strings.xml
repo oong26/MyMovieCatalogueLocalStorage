@@ -25,4 +25,6 @@
     <string name="tvshow_popularity">Popularitas</string>
     <string name="dummy_tv_description">Dumi Televisi Deskripsi</string>
     <string name="title_language">Bahasa</string>
+    <string name="search">Cari</string>
+    <string name="search_hint">Cari disini</string>
 </resources>
