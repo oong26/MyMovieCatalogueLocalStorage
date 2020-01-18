@@ -66,6 +66,45 @@ public class TvShowViewModel extends ViewModel {
         });
     }
 
+    public void setSearchTVShow(final Context context, String search_query){
+        AsyncHttpClient client = new AsyncHttpClient();
+        final ArrayList<TvShowItems> listItems = new ArrayList<>();
+        String url = "https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&language=" + language + "&query=" + search_query;
+        final String image_url = "https://image.tmdb.org/t/p/w185";
+        client.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                try{
+                    String result = new String(responseBody);
+                    JSONObject responseObject = new JSONObject(result);
+                    JSONArray results = responseObject.getJSONArray("results");
+                    for(int i = 0; i < results.length(); i++){
+                        JSONObject jsonObject = results.getJSONObject(i);
+                        TvShowItems items = new TvShowItems();
+                        items.setTvShow_id(jsonObject.getString("id"));
+                        items.setTitle(jsonObject.getString("original_name"));
+                        items.setDescription(jsonObject.getString("overview"));
+                        items.setPoster_path(jsonObject.getString("poster_path"));
+                        items.setPhoto(image_url + items.getPoster_path());
+                        items.setPopularity(jsonObject.getString("popularity"));
+                        listItems.add(items);
+                    }
+                    listTV.postValue(listItems);
+                }
+                catch (Exception e){
+                    Log.d("Exception", e.getMessage());
+                    Toast.makeText(context, MainActivity.ERROR_MSG , Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.d("Exception", error.getMessage());
+                Toast.makeText(context, MainActivity.SERVER_ERROR , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void setDetailTV(final Activity activity, final Context context, final String tv_id){
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<TvShowItems> listItems = new ArrayList<>();

@@ -24,6 +24,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.oong.mymoviecataloguelocalstorage.adapter.SectionsPagerAdapter;
 import com.oong.mymoviecataloguelocalstorage.database.FavoriteHelper;
+import com.oong.mymoviecataloguelocalstorage.fragments.MoviesFragment;
+import com.oong.mymoviecataloguelocalstorage.fragments.TVShowFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     public static FrameLayout hostFragment;
     boolean doubleBackToExitPressedOnce = false;
     private SearchManager searchManager;
+    public static boolean isSearchMovie;
+    public static String searchQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
+        isSearchMovie = false;
         ERROR_MSG = getResources().getString(R.string.error_msg);
         SERVER_ERROR = getResources().getString(R.string.server_error);
         MOVIE_SUCCESS_MSG = getResources().getString(R.string.movie_fav_msg);
@@ -103,7 +108,10 @@ public class MainActivity extends AppCompatActivity {
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+                    isSearchMovie = true;
+                    searchQuery = query;
+                    MoviesFragment.searchMovies(MainActivity.this, query);
+                    TVShowFragment.searchTVShow(MainActivity.this, query);
                     return true;
                 }
 

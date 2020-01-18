@@ -65,6 +65,63 @@ public class MoviesViewModel extends ViewModel {
         });
     }
 
+    public void setSearchMovie(final Context context, final String search_query){
+        AsyncHttpClient client = new AsyncHttpClient();
+        final ArrayList<MovieItems> listItems = new ArrayList<>();
+        String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US&query=" + search_query;
+        final String image_url = "https://image.tmdb.org/t/p/w185";
+        client.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                try{
+                    String result = new String(responseBody);
+                    JSONObject responseObject = new JSONObject(result);
+                    JSONArray results = responseObject.getJSONArray("results");
+
+                    for(int i = 0; i < results.length(); i++){
+                        JSONObject movies = results.getJSONObject(i);
+                        MovieItems movieItems = new MovieItems();
+                        movieItems.setMovie_id(movies.getString("id"));
+                        movieItems.setTitle(movies.getString("title"));
+                        movieItems.setDescription(movies.getString("overview"));
+                        movieItems.setPoster_path(movies.getString("poster_path"));
+                        movieItems.setPhoto(image_url + movieItems.getPoster_path());
+                        movieItems.setRelease_date(movies.getString("release_date"));
+                        listItems.add(movieItems);
+                    }
+                    listMovies.postValue(listItems);
+
+                    /*String movie_id = responseObject.getString("id");
+                    String title = responseObject.getString("original_title");
+                    String poster_path = responseObject.getString("poster_path");
+                    String desc = responseObject.getString("overview");
+                    String release_date = responseObject.getString("release_date");
+
+                    MovieItems movieItems = new MovieItems();
+                    movieItems.setMovie_id(movie_id);
+                    movieItems.setTitle(title);
+                    movieItems.setPoster_path(poster_path);
+                    movieItems.setPhoto(image_url + poster_path);
+                    movieItems.setDescription(desc);
+                    movieItems.setRelease_date(release_date);
+
+                    listItems.add(movieItems);
+                    listMovies.postValue(listItems);*/
+                }
+                catch (Exception e){
+                    Log.d("Exception", e.getMessage());
+                    Toast.makeText(context, MainActivity.ERROR_MSG , Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.d("Exception", error.getMessage());
+                Toast.makeText(context, MainActivity.SERVER_ERROR , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void setDetailMovie(final Activity activity, final Context context, final String movie_id){
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<MovieItems> listItems = new ArrayList<>();
@@ -96,7 +153,6 @@ public class MoviesViewModel extends ViewModel {
                 catch (Exception e){
                     Log.d("Exception", e.getMessage());
                     Toast.makeText(context, MainActivity.ERROR_MSG , Toast.LENGTH_SHORT).show();
-                    activity.finish();
                 }
             }
 
@@ -104,7 +160,6 @@ public class MoviesViewModel extends ViewModel {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Log.d("Exception", error.getMessage());
                 Toast.makeText(context, MainActivity.SERVER_ERROR , Toast.LENGTH_SHORT).show();
-                activity.finish();
             }
         });
     }

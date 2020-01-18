@@ -1,12 +1,14 @@
 package com.oong.mymoviecataloguelocalstorage.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,10 +35,11 @@ import static android.view.View.*;
 
 public class TVShowFragment extends Fragment {
 
-    private ProgressBar progressBar;
-    private TvShowViewModel viewModel;
-    private TVShowAdapter adapter;
+    private static ProgressBar progressBar;
+    private static TvShowViewModel viewModel;
+    private static TVShowAdapter adapter;
     private RecyclerView rvTVShow;
+    private static FragmentActivity fragmentActivity;
 
     public TVShowFragment() {
         // Required empty public constructor
@@ -58,6 +61,8 @@ public class TVShowFragment extends Fragment {
         MainActivity.viewPager.setVisibility(GONE);
         MainActivity.hostFragment.setVisibility(VISIBLE);
 
+        fragmentActivity = getActivity();
+
         setRecyclerView(view);
         progressBar = view.findViewById(R.id.progressBar);
         showLoading(true);
@@ -68,6 +73,17 @@ public class TVShowFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<TvShowItems> tvShowItems) {
                 adapter.setData(tvShowItems);
+                showLoading(false);
+            }
+        });
+    }
+
+    public static void searchTVShow(Context context, String search_query){
+        viewModel.setSearchTVShow(context, search_query);
+        viewModel.getTVShow().observe(fragmentActivity, new Observer<ArrayList<TvShowItems>>() {
+            @Override
+            public void onChanged(ArrayList<TvShowItems> tvItems) {
+                adapter.notifyDataSetChanged();
                 showLoading(false);
             }
         });
@@ -90,7 +106,7 @@ public class TVShowFragment extends Fragment {
         });
     }
 
-    void showLoading(boolean state){
+    static void showLoading(boolean state){
         if(state){
             progressBar.setVisibility(View.VISIBLE);
         }

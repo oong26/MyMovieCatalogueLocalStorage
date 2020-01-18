@@ -26,4 +26,7 @@
     <string name="title_language">Language</string>
     <string name="search">Search</string>
     <string name="search_hint">Search here</string>
+    <string name="add_widget">Add widget</string>
+    <string name="appwidget_text">Movie Favorites</string>
+    <string name="empty_text">NO DATA</string>
 </resources>

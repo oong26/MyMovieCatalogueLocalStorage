@@ -27,4 +27,6 @@
     <string name="title_language">Bahasa</string>
     <string name="search">Cari</string>
     <string name="search_hint">Cari disini</string>
+    <string name="appwidget_text">Film Favorit</string>
+    <string name="empty_text">Data Tidak Ada</string>
 </resources>

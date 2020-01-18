@@ -1,13 +1,17 @@
 package com.oong.mymoviecataloguelocalstorage.fragments;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.oong.mymoviecataloguelocalstorage.DetailMovieActivity;
 import com.oong.mymoviecataloguelocalstorage.MainActivity;
@@ -32,9 +37,10 @@ import static android.view.View.*;
 public class MoviesFragment extends Fragment {
 
     private RecyclerView rvMovies;
-    private ProgressBar progressBar;
-    private MoviesAdapter adapter;
-    private MoviesViewModel viewModel;
+    private static ProgressBar progressBar;
+    private static MoviesAdapter adapter;
+    private static MoviesViewModel viewModel;
+    private static FragmentActivity fragmentActivity;
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -45,6 +51,7 @@ public class MoviesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        MainActivity.isSearchMovie = false;
         return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
@@ -55,6 +62,8 @@ public class MoviesFragment extends Fragment {
         MainActivity.tabLayout.setVisibility(GONE);
         MainActivity.viewPager.setVisibility(GONE);
         MainActivity.hostFragment.setVisibility(VISIBLE);
+
+        fragmentActivity = getActivity();
 
         setRecyclerView(view);
         progressBar = view.findViewById(R.id.progressBar);
@@ -70,10 +79,15 @@ public class MoviesFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        Log.d("Oong", "Movies Fragment Result");
-        super.onActivityResult(requestCode, resultCode, data);
+    public static void searchMovies(Context context, String search_query){
+        viewModel.setSearchMovie(context, search_query);
+        viewModel.getMovie().observe(fragmentActivity, new Observer<ArrayList<MovieItems>>() {
+            @Override
+            public void onChanged(ArrayList<MovieItems> movieItems) {
+                adapter.notifyDataSetChanged();
+                showLoading(false);
+            }
+        });
     }
 
     private void setRecyclerView(View view){
@@ -93,7 +107,7 @@ public class MoviesFragment extends Fragment {
         });
     }
 
-    void showLoading(boolean state){
+    static void showLoading(boolean state){
         if(state){
             progressBar.setVisibility(View.VISIBLE);
         }
